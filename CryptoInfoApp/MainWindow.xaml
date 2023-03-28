@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptoInfoApp"
+        xmlns:viewModel="clr-namespace:CryptoInfoApp.ViewModel"
         mc:Ignorable="d"
         Title="Crypto Info App"
         Height="720"
@@ -20,6 +21,10 @@
         <WindowChrome CaptionHeight="0"
                       ResizeBorderThickness="10"/>
     </WindowChrome.WindowChrome>
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
 
     <Border Style="{DynamicResource BorderStyle}"
             Name="MainWindowBorder"
@@ -140,19 +145,16 @@
                 <StackPanel Orientation="Vertical">
                     <RadioButton Style="{DynamicResource MenuButtonStyle}"
                                  Content="Home"
-                                 Height="80"
-                                 FontSize="24"
-                                 IsChecked="True"/>
+                                 IsChecked="True"
+                                 Command="{Binding HomeViewCommand}"/>
 
                     <RadioButton Style="{DynamicResource MenuButtonStyle}"
                                  Content="Coin"
-                                 Height="80"
-                                 FontSize="24"/>
+                                 Command="{Binding CoinViewCommand}"/>
 
                     <RadioButton Style="{DynamicResource MenuButtonStyle}"
                                  Content="Convert"
-                                 Height="80"
-                                 FontSize="24"/>
+                                 Command="{Binding ConvertViewCommand}"/>
                 </StackPanel>
 
             </Border>
@@ -187,7 +189,8 @@
                             Grid.Column="1"
                             Grid.RowSpan="3"
                             Grid.ColumnSpan="3"
-                            Margin="10, 10, 20, 20"/>
+                            Margin="0, 5, 25, 15"
+                            Content="{Binding CurrentView}"/>
         </Grid>
     </Border>
 </Window>

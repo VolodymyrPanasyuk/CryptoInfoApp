@@ -28,12 +28,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Model\" />
-		<Folder Include="ViewModel\" />
-		<Folder Include="View\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Resource Include="Fonts\VarelaRound-Regular.ttf" />
 	</ItemGroup>
 
@@ -50,6 +44,10 @@
 			<Generator>SettingsSingleFileGenerator</Generator>
 			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Model\" />
 	</ItemGroup>
 
 </Project>

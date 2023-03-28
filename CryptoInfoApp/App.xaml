@@ -2,6 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CryptoInfoApp"
+             xmlns:viewModel="clr-namespace:CryptoInfoApp.ViewModel"
+             xmlns:view="clr-namespace:CryptoInfoApp.View"
              StartupUri="MainWindow.xaml">
 
     <Application.Resources>
@@ -12,6 +14,18 @@
             </ResourceDictionary.MergedDictionaries>
 
             <FontFamily x:Key="Varela Round" >/Fonts/#Varela Round</FontFamily>
+
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:CoinViewModel}">
+                <view:CoinView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ConvertViewModel}">
+                <view:ConvertView/>
+            </DataTemplate>
 
         </ResourceDictionary>
     </Application.Resources>

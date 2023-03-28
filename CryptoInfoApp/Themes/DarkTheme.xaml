@@ -126,6 +126,8 @@
 
     <Style TargetType="RadioButton" x:Key="MenuButtonStyle">
         <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Height" Value="80"/>
         <Setter Property="Margin" Value="0, 0, 0, 5"/>
         <Setter Property="Template">
             <Setter.Value>
