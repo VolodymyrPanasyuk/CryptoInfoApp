@@ -5,8 +5,189 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptoInfoApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Crypto Info App"
+        Height="720"
+        Width="1280"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="{StaticResource Varela Round}"
+        MouseDown="Window_MouseDown"
+        StateChanged="Window_StateChanged">
 
-    </Grid>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"
+                      ResizeBorderThickness="10"/>
+    </WindowChrome.WindowChrome>
+
+    <Border Style="{DynamicResource BorderStyle}"
+            Name="MainWindowBorder"
+            CornerRadius="20"
+            MouseDown="Border_MouseDown">
+
+        <Grid Margin="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.8*"
+                                  MinWidth="300"
+                                  MaxWidth="360"/>
+                <ColumnDefinition Width="4*"
+                                  MinWidth="500"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="140"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"
+                               MinHeight="80"
+                               MaxHeight="100"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"
+                               MinHeight="70"
+                               MaxHeight="90"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        Margin="25, 10, 0, 0">
+
+                <Image Source="Images/crypto-image.png"
+                       Height="50"
+                       Width="50"/>
+
+                <Label Style="{DynamicResource LabelStyle}"
+                       Content="Crypto Info App"
+                       FontSize="26"
+                       VerticalAlignment="Center"
+                       Margin="5, 0, 0, 0"/>
+
+            </StackPanel>
+
+            <Grid Grid.Row="0"
+                  Grid.Column="1"
+                  Margin="30, 15, 0, 5"
+                  MaxWidth="700">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBox Style="{DynamicResource TextBoxStyle}"
+                         Grid.Row="0"
+                         Grid.Column="0"
+                         Margin="0, 0, 20, 0"
+                     Height="60"
+                     MinWidth="200"
+                     Padding="15, 0, 15, 0"
+                     FontSize="20"
+                     VerticalContentAlignment="Center">
+                </TextBox>
+
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        Style="{DynamicResource SearchButthonStyle}"
+                        FontSize="20"
+                        Height="60">
+                    Search
+                </Button>
+
+            </Grid>
+
+            <Border Grid.Row="0"
+                    Grid.Column="3"
+                    Background="#6089b5"
+                    CornerRadius="0, 20, 0, 20"
+                    Height="60"
+                    VerticalAlignment="Top">
+                <StackPanel
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Margin="0, 10, 10, 0"
+                        Orientation="Horizontal">
+
+                    <Button Style="{DynamicResource WindowControlButtonStyle}"
+                        Height="40"
+                        Width="40"
+                        Content="&#xE921;"
+                        Click="MinimizeButton_Click"/>
+
+                    <Button Style="{DynamicResource WindowControlButtonStyle}"
+                        Height="40"
+                        Width="40"
+                        Content="&#xE922;"
+                        Name="MaximizeButton"
+                        Click="MaximizeButton_Click"/>
+
+                    <Button Style="{DynamicResource WindowControlButtonStyle}"
+                        Height="40"
+                        Width="40"
+                        Content="&#xE8BB;"
+                        Click="CloseButton_Click"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="2"
+                    Grid.Column="0"
+                    Background="#6089b5"
+                    CornerRadius="0, 20, 0, 0"
+                    Margin="0, 0, 40, 0">
+
+                <StackPanel Orientation="Vertical">
+                    <RadioButton Style="{DynamicResource MenuButtonStyle}"
+                                 Content="Home"
+                                 Height="80"
+                                 FontSize="24"
+                                 IsChecked="True"/>
+
+                    <RadioButton Style="{DynamicResource MenuButtonStyle}"
+                                 Content="Coin"
+                                 Height="80"
+                                 FontSize="24"/>
+
+                    <RadioButton Style="{DynamicResource MenuButtonStyle}"
+                                 Content="Convert"
+                                 Height="80"
+                                 FontSize="24"/>
+                </StackPanel>
+
+            </Border>
+
+            <Border Grid.Row="3"
+                    Grid.Column="0"
+                    Background="#49729e"
+                    CornerRadius="0, 0, 0, 20"
+                    Margin="0, 0, 40, 0"
+                    Name="SwitchThemeBorder">
+                <Button Style="{DynamicResource SwitchThemeButtonStyle}"
+                    Margin="15, 10, 20, 15"
+                    HorizontalContentAlignment="Left"
+                    Click="SwitchThemeButton_Click">
+
+                    <StackPanel Orientation="Horizontal"
+                            Margin="10, 0">
+                        <Image Source="Images/switch-theme.png"
+                           Height="32"
+                           Width="32"/>
+
+                        <Label Style="{DynamicResource LabelStyle}"
+                           Content="Change mode"
+                           VerticalAlignment="Center"
+                           Padding="5, 3, 0, 0"
+                           FontSize="22"/>
+                    </StackPanel>
+                </Button>
+            </Border>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.RowSpan="3"
+                            Grid.ColumnSpan="3"
+                            Margin="10, 10, 20, 20"/>
+        </Grid>
+    </Border>
 </Window>
