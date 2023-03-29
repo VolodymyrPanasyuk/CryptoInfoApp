@@ -170,4 +170,9 @@
         </Setter>
     </Style>
 
+    <Style TargetType="Border" x:Key="PageStyle">
+        <Setter Property="Background" Value="#d98b27"/>
+        <Setter Property="CornerRadius" Value="20"/>
+    </Style>
+
 </ResourceDictionary>
