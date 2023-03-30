@@ -23,6 +23,10 @@
                 <view:CoinView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:SearchViewModel}">
+                <view:SearchView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewModel:ConvertViewModel}">
                 <view:ConvertView/>
             </DataTemplate>

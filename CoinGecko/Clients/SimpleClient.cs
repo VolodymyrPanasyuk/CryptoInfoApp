@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 using CoinGecko.ApiEndPoints;
 using CoinGecko.Entities.Response.Simple;
 using CoinGecko.Interfaces;

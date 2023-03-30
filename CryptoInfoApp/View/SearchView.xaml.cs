@@ -2,9 +2,9 @@
 
 namespace CryptoInfoApp.View
 {
-    public partial class CoinView : UserControl
+    public partial class SearchView : UserControl
     {
-        public CoinView()
+        public SearchView()
         {
             InitializeComponent();
         }

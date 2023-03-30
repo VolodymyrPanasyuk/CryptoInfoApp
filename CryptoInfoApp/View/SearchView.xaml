@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CryptoInfoApp.View.HomeView"
+﻿<UserControl x:Class="CryptoInfoApp.View.SearchView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,7 +11,7 @@
              d:DesignWidth="953">
 
     <UserControl.DataContext>
-        <vm:HomeViewModel/>
+        <vm:SearchViewModel/>
     </UserControl.DataContext>
 
     <Border Style="{DynamicResource PageStyle}">
@@ -21,9 +21,9 @@
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
-                        <Border Visibility="{Binding CircleLoaderVisibility}">
-                            <fa5:SvgAwesome Style="{DynamicResource PageLoaderStyle}"/>
-                        </Border>
+
+                        <fa5:SvgAwesome Style="{DynamicResource PageLoaderStyle}"
+                                        Visibility="{Binding CircleLoaderVisibility}"/>
 
                         <Label Style="{DynamicResource ErrorLabelStyle}"
                                Content="Ooops..."

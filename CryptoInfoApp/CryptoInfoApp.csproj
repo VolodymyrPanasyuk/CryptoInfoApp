@@ -28,6 +28,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="FontAwesome5" Version="2.1.11" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CoinGecko\CoinGecko.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Resource Include="Fonts\VarelaRound-Regular.ttf" />
 	</ItemGroup>
 
@@ -44,10 +52,6 @@
 			<Generator>SettingsSingleFileGenerator</Generator>
 			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Model\" />
 	</ItemGroup>
 
 </Project>

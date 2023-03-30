@@ -1,9 +1,9 @@
-﻿using CryptoInfoApp.Core;
+﻿
 using System.Windows;
 
 namespace CryptoInfoApp.ViewModel
 {
-    public class ConvertViewModel : ObservableObject
+    public class SearchViewModel
     {
         public Visibility LoadingVisibility { get; set; } = Visibility.Visible;
         public Visibility CircleLoaderVisibility { get; set; } = Visibility.Visible;

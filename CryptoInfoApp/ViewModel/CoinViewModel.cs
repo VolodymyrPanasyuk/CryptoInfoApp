@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CryptoInfoApp.Core;
+using System.Windows;
 
 namespace CryptoInfoApp.ViewModel
 {
-    class CoinViewModel
+    public class CoinViewModel : ObservableObject
     {
+        public Visibility LoadingVisibility { get; set; } = Visibility.Visible;
+        public Visibility CircleLoaderVisibility { get; set; } = Visibility.Visible;
+        public Visibility ErrorVisibility { get; set; } = Visibility.Hidden;
+        public string ErroeMessage { get; set; } = string.Empty;
     }
 }

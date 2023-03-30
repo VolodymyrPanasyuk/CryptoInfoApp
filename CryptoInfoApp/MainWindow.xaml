@@ -153,6 +153,10 @@
                                  Command="{Binding CoinViewCommand}"/>
 
                     <RadioButton Style="{DynamicResource MenuButtonStyle}"
+                                 Content="Search"
+                                 Command="{Binding SearchViewCommand}"/>
+
+                    <RadioButton Style="{DynamicResource MenuButtonStyle}"
                                  Content="Convert"
                                  Command="{Binding ConvertViewCommand}"/>
                 </StackPanel>

@@ -15,41 +15,40 @@ namespace CryptoInfoApp.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public RelayCommand HomeViewCommand { get; set; }
-
         public RelayCommand CoinViewCommand { get; set; }
-
+        public RelayCommand SearchViewCommand { get; set; }
         public RelayCommand ConvertViewCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
-
         public CoinViewModel CoinVM { get; set; }
-
+        public SearchViewModel SearchVM { get; set; }
         public ConvertViewModel ConvertVM { get; set; }
 
         public MainViewModel()
         {
             HomeVM = new HomeViewModel();
-            CoinVM = new CoinViewModel();
-            ConvertVM = new ConvertViewModel();
+            CurrentView = HomeVM;
 
             HomeViewCommand = new RelayCommand(x =>
             {
-                CurrentView = HomeVM;
+                CurrentView = HomeVM != null ? HomeVM : new HomeViewModel();
             });
 
             CoinViewCommand = new RelayCommand(x =>
             {
-                CurrentView = CoinVM;
+                CurrentView = CoinVM != null ? CoinVM : new CoinViewModel();
+            });
+
+            SearchViewCommand = new RelayCommand(x =>
+            {
+                CurrentView = SearchVM != null ? SearchVM : new SearchViewModel();
             });
 
             ConvertViewCommand = new RelayCommand(x =>
             {
-                CurrentView = ConvertVM;
+                CurrentView = ConvertVM != null ? ConvertVM : new ConvertViewModel();
             });
-
-            CurrentView = HomeVM;
         }
     }
 }

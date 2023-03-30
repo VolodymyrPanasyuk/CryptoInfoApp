@@ -21,6 +21,7 @@ public partial class CoinGeckoClient : IDisposable, ICoinGeckoClient
     public ISimpleClient SimpleClient => new SimpleClient(_httpClient);
     public IPingClient PingClient => new PingClient(_httpClient);
     public ICoinsClient CoinsClient => new CoinsClient(_httpClient);
+    public IGlobalClient GlobalClient => new GlobalClient(_httpClient);
 
 
     public void Dispose()
