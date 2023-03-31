@@ -28,7 +28,7 @@ namespace CoinCap.Clients
                 })).ConfigureAwait(false);
         }
 
-        public async Task<AssetById> GetAssetsById(string id)
+        public async Task<AssetById> GetAssetById(string id)
         {
             return await GetAsync<AssetById>(QueryStringService.AppendQueryString(AssetsEndPoints.AssetById(id))).ConfigureAwait(false);
         }

@@ -19,6 +19,7 @@ namespace CryptoInfoApp.ViewModel
         public RelayCommand CoinViewCommand { get; set; }
         public RelayCommand SearchViewCommand { get; set; }
         public RelayCommand ConvertViewCommand { get; set; }
+        public RelayCommand ReloadCurrentViewCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
         public CoinViewModel CoinVM { get; set; }
@@ -48,6 +49,29 @@ namespace CryptoInfoApp.ViewModel
             ConvertViewCommand = new RelayCommand(x =>
             {
                 CurrentView = ConvertVM != null ? ConvertVM : new ConvertViewModel();
+            });
+
+            ReloadCurrentViewCommand = new RelayCommand(x =>
+            {
+                switch (CurrentView)
+                {
+                    case HomeViewModel:
+                        HomeVM = new HomeViewModel();
+                        CurrentView = HomeVM;
+                        break;
+                    case CoinViewModel:
+                        CoinVM = new CoinViewModel();
+                        CurrentView = CoinVM;
+                        break;
+                    case SearchViewModel:
+                        SearchVM = new SearchViewModel();
+                        CurrentView = SearchVM;
+                        break;
+                    case ConvertViewModel convertVM:
+                        ConvertVM = new ConvertViewModel();
+                        CurrentView = ConvertVM;
+                        break;
+                }
             });
         }
     }

@@ -14,10 +14,10 @@ namespace CoinCap.Entities.Exchanges
         public int? Rank { get; set; }
 
         [JsonPropertyName("percentTotalVolume")]
-        public double? PercentTotalVolume { get; set; }
+        public decimal? PercentTotalVolume { get; set; }
 
         [JsonPropertyName("volumeUsd")]
-        public double? VolumeUsd { get; set; }
+        public decimal? VolumeUsd { get; set; }
 
         [JsonPropertyName("tradingPairs")]
         public int? TradingPairs { get; set; }

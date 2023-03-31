@@ -17,6 +17,6 @@ namespace CoinCap.Entities.Rates
         public string Type { get; set; }
 
         [JsonPropertyName("rateUsd")]
-        public double? RateUsd { get; set; }
+        public decimal? RateUsd { get; set; }
     }
 }

@@ -17,24 +17,24 @@ namespace CoinCap.Entities.Assets
         public string Name { get; set; }
 
         [JsonPropertyName("supply")]
-        public double? Supply { get; set; }
+        public decimal? Supply { get; set; }
 
         [JsonPropertyName("maxSupply")]
-        public double? MaxSupply { get; set; }
+        public decimal? MaxSupply { get; set; }
 
         [JsonPropertyName("marketCapUsd")]
-        public double? MarketCapUsd { get; set; }
+        public decimal? MarketCapUsd { get; set; }
 
         [JsonPropertyName("volumeUsd24Hr")]
-        public double? VolumeUsd24Hr { get; set; }
+        public decimal? VolumeUsd24Hr { get; set; }
 
         [JsonPropertyName("priceUsd")]
-        public double? PriceUsd { get; set; }
+        public decimal? PriceUsd { get; set; }
 
         [JsonPropertyName("changePercent24Hr")]
-        public double? ChangePercent24Hr { get; set; }
+        public decimal? ChangePercent24Hr { get; set; }
 
         [JsonPropertyName("vwap24Hr")]
-        public double? Vwap24Hr { get; set; }
+        public decimal? Vwap24Hr { get; set; }
     }
 }

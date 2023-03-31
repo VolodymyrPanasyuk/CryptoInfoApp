@@ -29,6 +29,7 @@
 
 	<ItemGroup>
 	  <PackageReference Include="FontAwesome5" Version="2.1.11" />
+	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
 	</ItemGroup>
 
 	<ItemGroup>

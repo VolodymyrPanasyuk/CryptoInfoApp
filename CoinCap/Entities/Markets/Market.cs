@@ -23,16 +23,16 @@ namespace CoinCap.Entities.Markets
         public string QuoteId { get; set; }
 
         [JsonPropertyName("priceQuote")]
-        public double? PriceQuote { get; set; }
+        public decimal? PriceQuote { get; set; }
 
         [JsonPropertyName("priceUsd")]
-        public double? PriceUsd { get; set; }
+        public decimal? PriceUsd { get; set; }
 
         [JsonPropertyName("volumeUsd24Hr")]
-        public double? VolumeUsd24Hr { get; set; }
+        public decimal? VolumeUsd24Hr { get; set; }
 
         [JsonPropertyName("percentExchangeVolume")]
-        public double? PercentExchangeVolume { get; set; }
+        public decimal? PercentExchangeVolume { get; set; }
 
         [JsonPropertyName("tradesCount24Hr")]
         public int? TradesCount24Hr { get; set; }

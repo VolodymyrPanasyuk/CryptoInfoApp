@@ -16,22 +16,29 @@
 
     <Border Style="{DynamicResource PageStyle}">
         <Grid>
-            <Grid Panel.ZIndex="1" Visibility="{Binding LoadingVisibility}">
-                <Border Style="{DynamicResource PageLoaderBorderStyle}">
+            <Grid Panel.ZIndex="1">
+                <Border Style="{DynamicResource PageLoaderBorderStyle}"
+                        Visibility="{Binding LoadingVisibility}">
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
-                        <Border Visibility="{Binding CircleLoaderVisibility}">
-                            <fa5:SvgAwesome Style="{DynamicResource PageLoaderStyle}"/>
-                        </Border>
+
+                        <fa5:SvgAwesome Style="{DynamicResource PageLoaderStyle}"
+                                        Spin="{Binding CircleIconSpin}"/>
+
+                        <Label Foreground="Black"
+                               FontSize="22"
+                               Padding="0, 20, 0, 10"
+                               HorizontalAlignment="Center"
+                               Content="{Binding StatusMessage}"/>
 
                         <Label Style="{DynamicResource ErrorLabelStyle}"
-                               Content="Ooops..."
-                               Visibility="{Binding ErrorVisibility}"/>
+                               Visibility="{Binding ErrorVisibility}"
+                               Content="{Binding CoinGeckoErrorMessage}"/>
 
                         <Label Style="{DynamicResource ErrorLabelStyle}"
-                               Content="{Binding ErroeMessage}"
-                               Visibility="{Binding ErrorVisibility}"/>
+                               Visibility="{Binding ErrorVisibility}"
+                               Content="{Binding CoinCapErrorMessage}"/>
                     </StackPanel>
                 </Border>
             </Grid>

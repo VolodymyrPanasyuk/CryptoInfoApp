@@ -7,7 +7,7 @@ namespace CoinCap.Interfaces
         Task<List<AssetById>> GetAllAssets(int limit);
         Task<List<AssetById>> GetAllAssets(string? search, string[]? ids, int? limit, int? offset);
 
-        Task<AssetById> GetAssetsById(string id);
+        Task<AssetById> GetAssetById(string id);
 
         Task<List<HistoryById>> GetHistoryById(string id);
 
