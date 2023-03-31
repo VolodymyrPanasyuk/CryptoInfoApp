@@ -1,11 +1,7 @@
-namespace CoinGecko.Entities.Response.Coins;
-
-using System;
-using System.Collections.Generic;
-using CoinGecko.Entities.Response.Shared;
+using CoinGecko.Entities.Shared;
 using System.Text.Json.Serialization;
 
-
+namespace CoinGecko.Entities.Coins;
 public class CoinFullData : CoinFullDataWithOutMarketData
 {
     [JsonPropertyName("market_data")]

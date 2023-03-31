@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace CoinGecko.Entities.Response
+namespace CoinGecko.Entities
 {
     public class Ping
     {

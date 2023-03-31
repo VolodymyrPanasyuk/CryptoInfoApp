@@ -1,5 +1,5 @@
 using CoinGecko.ApiEndPoints;
-using CoinGecko.Entities.Response.Simple;
+using CoinGecko.Entities.Simple;
 using CoinGecko.Interfaces;
 using CoinGecko.Services;
 

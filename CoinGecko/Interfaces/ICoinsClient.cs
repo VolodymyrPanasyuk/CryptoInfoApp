@@ -2,7 +2,7 @@ namespace CoinGecko.Interfaces;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CoinGecko.Entities.Response.Coins;
+using CoinGecko.Entities.Coins;
 
 public interface ICoinsClient
 {

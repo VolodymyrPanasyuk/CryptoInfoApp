@@ -1,6 +1,6 @@
-namespace CoinGecko.Entities.Response.Coins;
+namespace CoinGecko.Entities.Coins;
 
-using CoinGecko.Entities.Response.Shared;
+using CoinGecko.Entities.Shared;
 using System.Text.Json.Serialization;
 
 public class TickerById

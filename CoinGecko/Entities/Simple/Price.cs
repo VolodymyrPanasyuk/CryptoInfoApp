@@ -1,4 +1,4 @@
-namespace CoinGecko.Entities.Response.Simple;
+namespace CoinGecko.Entities.Simple;
 
 using System.Collections.Generic;
 

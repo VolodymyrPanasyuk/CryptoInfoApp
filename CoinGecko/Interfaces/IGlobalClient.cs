@@ -1,7 +1,7 @@
 namespace CoinGecko.Interfaces;
 
 using System.Threading.Tasks;
-using CoinGecko.Entities.Response.Global;
+using CoinGecko.Entities.Global;
 
 public interface IGlobalClient
 {

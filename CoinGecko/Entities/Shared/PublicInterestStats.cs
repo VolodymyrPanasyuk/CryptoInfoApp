@@ -1,4 +1,4 @@
-namespace CoinGecko.Entities.Response.Shared;
+namespace CoinGecko.Entities.Shared;
 
 using System.Text.Json.Serialization;
 

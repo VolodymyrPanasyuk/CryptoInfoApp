@@ -1,4 +1,4 @@
-﻿using CoinGecko.Entities.Response.Coins;
+﻿using CoinGecko.Entities.Coins;
 using System;
 using System.Globalization;
 using System.Windows.Data;

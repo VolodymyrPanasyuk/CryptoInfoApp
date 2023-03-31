@@ -1,8 +1,8 @@
-namespace CoinGecko.Entities.Response.Shared;
+namespace CoinGecko.Entities.Shared;
 
 using System;
 using System.Text.Json.Serialization;
-using CoinGecko.Entities.Response.Coins;
+using CoinGecko.Entities.Coins;
 
 public class Links
 {

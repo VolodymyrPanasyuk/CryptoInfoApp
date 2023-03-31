@@ -1,5 +1,5 @@
 ﻿using CoinGecko.Clients;
-using CoinGecko.Entities.Response.Coins;
+using CoinGecko.Entities.Coins;
 using CryptoInfoApp.Core;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

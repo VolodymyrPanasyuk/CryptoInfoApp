@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoInfoApp", "CryptoInfoApp\CryptoInfoApp.csproj", "{95FD2A4D-E469-43CD-97B1-E613CDBFF587}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinGecko", "CoinGecko\CoinGecko.csproj", "{110F69BD-CF30-487E-BA97-8728E8C9FD4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinGecko", "CoinGecko\CoinGecko.csproj", "{110F69BD-CF30-487E-BA97-8728E8C9FD4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinCap", "CoinCap\CoinCap.csproj", "{8421CB94-5BD5-47B3-858B-489B092D0EB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{110F69BD-CF30-487E-BA97-8728E8C9FD4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{110F69BD-CF30-487E-BA97-8728E8C9FD4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{110F69BD-CF30-487E-BA97-8728E8C9FD4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8421CB94-5BD5-47B3-858B-489B092D0EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8421CB94-5BD5-47B3-858B-489B092D0EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8421CB94-5BD5-47B3-858B-489B092D0EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8421CB94-5BD5-47B3-858B-489B092D0EB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

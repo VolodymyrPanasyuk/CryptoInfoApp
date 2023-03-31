@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CoinGecko.ApiEndPoints;
-using CoinGecko.Entities.Response.Coins;
+using CoinGecko.Entities.Coins;
 using CoinGecko.Interfaces;
 using CoinGecko.Parameters;
 using CoinGecko.Services;

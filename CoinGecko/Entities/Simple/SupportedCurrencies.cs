@@ -1,5 +1,5 @@
 using System.Collections.Generic;
 
-namespace CoinGecko.Entities.Response.Simple;
+namespace CoinGecko.Entities.Simple;
 
 public class SupportedCurrencies : List<string> { }

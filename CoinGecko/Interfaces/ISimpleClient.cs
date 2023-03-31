@@ -1,7 +1,7 @@
 namespace CoinGecko.Interfaces;
 
 using System.Threading.Tasks;
-using CoinGecko.Entities.Response.Simple;
+using CoinGecko.Entities.Simple;
 
 public interface ISimpleClient
 {

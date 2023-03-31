@@ -32,6 +32,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\CoinCap\CoinCap.csproj" />
 	  <ProjectReference Include="..\CoinGecko\CoinGecko.csproj" />
 	</ItemGroup>
 

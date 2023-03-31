@@ -3,7 +3,7 @@ namespace CoinGecko.Clients;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CoinGecko.ApiEndPoints;
-using CoinGecko.Entities.Response.Global;
+using CoinGecko.Entities.Global;
 using CoinGecko.Interfaces;
 using CoinGecko.Services;
 
