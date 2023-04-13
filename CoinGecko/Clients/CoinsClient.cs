@@ -156,4 +156,14 @@ public class CoinsClient : BaseApiClient, ICoinsClient
                 {"to",to}
             })).ConfigureAwait(false);
     }
+
+    public async Task<dynamic> GetOhlcByCoinId(string id, string vsCurrency, string days)
+    {
+        return await GetAsync<dynamic>(QueryStringService.AppendQueryString(
+            CoinsApiEndPoints.OhlcByCoinId(id), new Dictionary<string, object>
+            {
+                {"vs_currency", string.Join(",", vsCurrency)},
+                {"days", days}
+            })).ConfigureAwait(false);
+    }
 }

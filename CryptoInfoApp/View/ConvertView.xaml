@@ -5,37 +5,143 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptoInfoApp.View"
              xmlns:vm="clr-namespace:CryptoInfoApp.ViewModel"
+             xmlns:convertors="clr-namespace:CryptoInfoApp.Core.Converters"
              xmlns:fa5="http://schemas.fontawesome.com/icons/"
              mc:Ignorable="d" 
-             d:DesignHeight="600"
-             d:DesignWidth="953">
+             d:DesignHeight="680"
+             d:DesignWidth="1070"
+             FontFamily="{StaticResource Varela Round}">
 
-    <UserControl.DataContext>
-        <vm:ConvertViewModel/>
-    </UserControl.DataContext>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <convertors:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        <convertors:CurrencyVolumeToVolume x:Key="CurrencyVolumeToVolume"/>
+        <convertors:DecimalToShortCurrency x:Key="DecimalToShortCurrency"/>
+        <convertors:DecimalToVariableCurrency x:Key="DecimalToVariableCurrency"/>
+        <convertors:DecimalToZeroCurrency x:Key="DecimalToZeroCurrency"/>
+        <convertors:PercentageToBrush x:Key="PercentageToBrush"/>
+        <convertors:PercentageToText x:Key="PercentageToText"/>
+        <convertors:PercentageToTrend x:Key="PercentageToTrend"/>
+        <convertors:SortToText x:Key="SortToText"/>
+        <convertors:SupplyWithSymbol x:Key="SupplyWithSymbol"/>
+        <convertors:ToUpper x:Key="ToUpper"/>
+        <convertors:ImageToSource x:Key="ImageToSource"/>
+    </UserControl.Resources>
 
     <Border Style="{DynamicResource PageStyle}">
         <Grid>
-            <Grid Panel.ZIndex="1" Visibility="{Binding LoadingVisibility}">
-                <Border Style="{DynamicResource PageLoaderBorderStyle}">
+            <Grid Panel.ZIndex="1">
+                <Border Style="{DynamicResource PageLoaderBorderStyle}"
+                        Visibility="{Binding Loader.LoadingVisibility}">
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
 
                         <fa5:SvgAwesome Style="{DynamicResource PageLoaderStyle}"
-                                        Visibility="{Binding CircleLoaderVisibility}"/>
+                                        Spin="{Binding Loader.CircleIconSpin}"/>
+
+                        <Label Foreground="Black"
+                               FontSize="22"
+                               Padding="0, 20, 0, 10"
+                               HorizontalAlignment="Center"
+                               Content="{Binding Loader.StatusMessage}"/>
 
                         <Label Style="{DynamicResource ErrorLabelStyle}"
-                               Content="Ooops..."
-                               Visibility="{Binding ErrorVisibility}"/>
+                               Visibility="{Binding Loader.ErrorVisibility}"
+                               Content="{Binding Loader.CoinGeckoErrorMessage}"/>
 
                         <Label Style="{DynamicResource ErrorLabelStyle}"
-                               Content="{Binding ErroeMessage}"
-                               Visibility="{Binding ErrorVisibility}"/>
+                               Visibility="{Binding Loader.ErrorVisibility}"
+                               Content="{Binding Loader.CoinCapErrorMessage}"/>
                     </StackPanel>
                 </Border>
             </Grid>
 
+            <Grid Visibility="{Binding Loader.IsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <Border Style="{DynamicResource ConvertBorderStyle}">
+
+                    <StackPanel Orientation="Vertical">
+
+                        <Label Content="Select the coins you want to convert"
+                               Style="{DynamicResource LabelStyle}"
+                               FontSize="24"
+                               FontWeight="Bold"/>
+
+                        <Label Content="From"
+                               Style="{DynamicResource LabelStyle}"
+                               HorizontalAlignment="Left"
+                               FontSize="20"
+                               Margin="16, 16, 0, 4"/>
+
+                        <ComboBox ItemsSource="{Binding ConvertModels}"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"
+                                  Name="FromCoinComboBox"
+                                  IsTextSearchEnabled="True"
+                                  FontSize="20"
+                                  Height="48"
+                                  Margin="10, 0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <Label Content="To"
+                               Style="{DynamicResource LabelStyle}"
+                               HorizontalAlignment="Left"
+                               FontSize="20"
+                               Margin="16, 16, 0, 4"/>
+
+                        <ComboBox ItemsSource="{Binding ConvertModels}"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"
+                                  Name="ToCoinComboBox"
+                                  IsTextSearchEnabled="True"
+                                  FontSize="20"
+                                  Height="48"
+                                  Margin="10, 0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <Label Content="Count"
+                               Style="{DynamicResource LabelStyle}"
+                               HorizontalAlignment="Left"
+                               FontSize="20"
+                               Margin="16, 16, 0, 4"/>
+
+                        <TextBox Style="{DynamicResource TextBoxStyle}"
+                                 Name="Count"
+                                 HorizontalContentAlignment="Left"
+                                 Padding="10, 0"
+                                 VerticalContentAlignment="Center"
+                                 FontSize="20"
+                                 Margin="10, 0"
+                                 Height="52"/>
+
+                        <Label Style="{DynamicResource LabelStyle}"
+                               Content="Resul:"
+                               FontWeight="Bold"
+                               FontSize="20"
+                               Name="Result"
+                               Margin="16, 24, 0, 0"/>
+
+                        <Button Name="ConvertButton"
+                                Content="Convert"
+                                Height="64"
+                                FontSize="20"
+                                Width="192"
+                                Click="ConvertButton_Click"
+                                Margin="0, 24, 0, 0"
+                                Style="{DynamicResource ButthonStyle}"/>
+
+                    </StackPanel>
+                </Border>
+            </Grid>
         </Grid>
     </Border>
 </UserControl>

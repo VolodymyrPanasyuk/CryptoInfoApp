@@ -1,6 +1,6 @@
-namespace CoinGecko.Services;
+namespace CoinCap.Services;
 
-using CoinGecko.ApiEndPoints;
+using CoinCap.ApiEndPoints;
 using System;
 using System.Collections.Generic;
 using System.Linq;

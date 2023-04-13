@@ -1,10 +1,10 @@
-namespace CoinGecko.Clients;
+namespace CoinCap.Clients;
 
 using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CoinGecko.Interfaces;
+using CoinCap.Interfaces;
 
 public class BaseApiClient : IAsyncApiRepository
 {

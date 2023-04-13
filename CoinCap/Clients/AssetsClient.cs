@@ -1,9 +1,9 @@
 ﻿using CoinCap.ApiEndPosints;
+using CoinCap.Entities;
 using CoinCap.Entities.Assets;
 using CoinCap.Interfaces;
 using CoinCap.Parameters;
-using CoinGecko.Clients;
-using CoinGecko.Services;
+using CoinCap.Services;
 
 namespace CoinCap.Clients
 {
@@ -11,36 +11,36 @@ namespace CoinCap.Clients
     {
         public AssetsClient(HttpClient client) : base(client) { }
 
-        public async Task<List<AssetById>> GetAllAssets(int limit)
+        public async Task<ApiResponseArray<AssetById>> GetAssets(int limit, int offset)
         {
-            return await GetAllAssets(null, null, limit, null).ConfigureAwait(false);
+            return await GetAssets(null, null, limit, offset).ConfigureAwait(false);
         }
 
-        public async Task<List<AssetById>> GetAllAssets(string? search, string[]? ids, int? limit, int? offset)
+        public async Task<ApiResponseArray<AssetById>> GetAssets(string? search, string[]? ids, int? limit, int? offset)
         {
-            return await GetAsync<List<AssetById>>(QueryStringService.AppendQueryString(AssetsEndPoints.AllAssets(),
+            return await GetAsync<ApiResponseArray<AssetById>>(QueryStringService.AppendQueryString(AssetsEndPoints.AllAssets(),
                 new Dictionary<string, object>
                 {
-                    {"search", string.Join(",", ids)},
-                    {"ids", ids},
+                    {"search", search},
+                    {"ids", ids == null? "": string.Join(",", ids)},
                     {"limit", limit},
                     {"offset", offset}
                 })).ConfigureAwait(false);
         }
 
-        public async Task<AssetById> GetAssetById(string id)
+        public async Task<ApiResponse<AssetById>> GetAssetById(string id)
         {
-            return await GetAsync<AssetById>(QueryStringService.AppendQueryString(AssetsEndPoints.AssetById(id))).ConfigureAwait(false);
+            return await GetAsync<ApiResponse<AssetById>>(QueryStringService.AppendQueryString(AssetsEndPoints.AssetById(id))).ConfigureAwait(false);
         }
 
-        public async Task<List<HistoryById>> GetHistoryById(string id)
+        public async Task<ApiResponseArray<HistoryById>> GetHistoryById(string id)
         {
             return await GetHistoryById(id, HistoryInterval.OneDay, null, null).ConfigureAwait(false);
         }
 
-        public async Task<List<HistoryById>> GetHistoryById(string id, string interval, long? start, long? end)
+        public async Task<ApiResponseArray<HistoryById>> GetHistoryById(string id, string interval, long? start, long? end)
         {
-            return await GetAsync<List<HistoryById>>(QueryStringService.AppendQueryString(AssetsEndPoints.HistoryById(id),
+            return await GetAsync<ApiResponseArray<HistoryById>>(QueryStringService.AppendQueryString(AssetsEndPoints.HistoryById(id),
                 new Dictionary<string, object>
                 {
                     {"interval", interval},
@@ -49,9 +49,9 @@ namespace CoinCap.Clients
                 })).ConfigureAwait(false);
         }
 
-        public Task<List<MarketById>> GetMarketsById(string id, int? limit, int? offset)
+        public Task<ApiResponseArray<MarketById>> GetMarketsById(string id, int? limit, int? offset)
         {
-            return GetAsync<List<MarketById>>(QueryStringService.AppendQueryString(AssetsEndPoints.MarketsById(id),
+            return GetAsync<ApiResponseArray<MarketById>>(QueryStringService.AppendQueryString(AssetsEndPoints.MarketsById(id),
                 new Dictionary<string, object>
                 {
                     {"limit", limit},

@@ -1,11 +1,11 @@
-﻿using CoinCap.Entities.Rates;
+﻿using CoinCap.Entities;
+using CoinCap.Entities.Rates;
 
 namespace CoinCap.Interfaces
 {
     public interface IRatesClient
     {
-        Task<List<RateById>> GetRates();
-
-        Task<RateById> GetRateById(string id);
+        Task<ApiResponseArray<RateById>> GetRates();
+        Task<ApiResponse<RateById>> GetRateById(string id);
     }
 }

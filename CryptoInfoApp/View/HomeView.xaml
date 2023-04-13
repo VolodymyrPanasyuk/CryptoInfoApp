@@ -4,45 +4,182 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptoInfoApp.View"
+             xmlns:convertors="clr-namespace:CryptoInfoApp.Core.Converters"
              xmlns:vm="clr-namespace:CryptoInfoApp.ViewModel"
              xmlns:fa5="http://schemas.fontawesome.com/icons/"
              mc:Ignorable="d" 
-             d:DesignHeight="600"
-             d:DesignWidth="953">
+             d:DesignHeight="680"
+             d:DesignWidth="1070"
+             FontFamily="{StaticResource Varela Round}">
 
-    <UserControl.DataContext>
-        <vm:HomeViewModel/>
-    </UserControl.DataContext>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <convertors:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        <convertors:CurrencyVolumeToVolume x:Key="CurrencyVolumeToVolume"/>
+        <convertors:DecimalToShortCurrency x:Key="DecimalToShortCurrency"/>
+        <convertors:DecimalToVariableCurrency x:Key="DecimalToVariableCurrency"/>
+        <convertors:DecimalToZeroCurrency x:Key="DecimalToZeroCurrency"/>
+        <convertors:PercentageToBrush x:Key="PercentageToBrush"/>
+        <convertors:PercentageToText x:Key="PercentageToText"/>
+        <convertors:PercentageToTrend x:Key="PercentageToTrend"/>
+        <convertors:SortToText x:Key="SortToText"/>
+        <convertors:SupplyWithSymbol x:Key="SupplyWithSymbol"/>
+        <convertors:ToUpper x:Key="ToUpper"/>
+        <convertors:ImageToSource x:Key="ImageToSource"/>
+    </UserControl.Resources>
 
     <Border Style="{DynamicResource PageStyle}">
         <Grid>
             <Grid Panel.ZIndex="1">
                 <Border Style="{DynamicResource PageLoaderBorderStyle}"
-                        Visibility="{Binding LoadingVisibility}">
+                        Visibility="{Binding Loader.LoadingVisibility}">
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
 
                         <fa5:SvgAwesome Style="{DynamicResource PageLoaderStyle}"
-                                        Spin="{Binding CircleIconSpin}"/>
+                                        Spin="{Binding Loader.CircleIconSpin}"/>
 
                         <Label Foreground="Black"
                                FontSize="22"
                                Padding="0, 20, 0, 10"
                                HorizontalAlignment="Center"
-                               Content="{Binding StatusMessage}"/>
+                               Content="{Binding Loader.StatusMessage}"/>
 
                         <Label Style="{DynamicResource ErrorLabelStyle}"
-                               Visibility="{Binding ErrorVisibility}"
-                               Content="{Binding CoinGeckoErrorMessage}"/>
+                               Visibility="{Binding Loader.ErrorVisibility}"
+                               Content="{Binding Loader.CoinGeckoErrorMessage}"/>
 
                         <Label Style="{DynamicResource ErrorLabelStyle}"
-                               Visibility="{Binding ErrorVisibility}"
-                               Content="{Binding CoinCapErrorMessage}"/>
+                               Visibility="{Binding Loader.ErrorVisibility}"
+                               Content="{Binding Loader.CoinCapErrorMessage}"/>
                     </StackPanel>
                 </Border>
             </Grid>
 
+            <Grid Visibility="{Binding Loader.IsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <DataGrid Grid.Row="0"
+                          ItemsSource="{Binding HomeModels}"
+                          Style="{DynamicResource DataGridStyle}"
+                          ScrollViewer.ScrollChanged="DataGrid_ScrollChanged"
+                          SelectedCellsChanged="DataGrid_SelectedCellsChanged"
+                          FontFamily="{StaticResource Varela Round}">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="#"
+                                            Binding="{Binding Rank}"
+                                            Width="0.3*"
+                                            MinWidth="40"
+                                            MaxWidth="750"/>
+
+                        <DataGridTextColumn Header="Symbol"
+                                            Binding="{Binding Symbol, Converter={StaticResource ToUpper}}"
+                                            Width="0.3*"
+                                            MinWidth="80"
+                                            MaxWidth="750"/>
+
+                        <DataGridTemplateColumn Header="Name"
+                                                Width="*"
+                                                MinWidth="150"
+                                                MaxWidth="750">
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Image, Converter={StaticResource ImageToSource}}"
+                                               Width="28"
+                                               Height="28"
+                                               Margin="0 0 4 0"
+                                               Visibility="{Binding Image, Converter={StaticResource NullToVisibilityConverter}}"/>
+
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Price"
+                                            Binding="{Binding Price, Converter={StaticResource DecimalToVariableCurrency}}"
+                                            Width="0.5*"
+                                            MinWidth="100"
+                                            MaxWidth="750"/>
+
+                        <DataGridTemplateColumn Header="24h %"
+                                                Width="0.3*"
+                                                MinWidth="75"
+                                                MaxWidth="750">
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PriceChangePercentage24H, Converter={StaticResource PercentageToText}}"
+                                               Foreground="{Binding PriceChangePercentage24H, Converter={StaticResource PercentageToBrush}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="7d %"
+                                                Width="0.3*"
+                                                MinWidth="75"
+                                                MaxWidth="750">
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PriceChangePercentage7D, Converter={StaticResource PercentageToText}}"
+                                               Foreground="{Binding PriceChangePercentage7D, Converter={StaticResource PercentageToBrush}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Market Cap"
+                                            Binding="{Binding MarketCap, Converter={StaticResource DecimalToZeroCurrency}}"
+                                            Width="*"
+                                            MinWidth="150"
+                                            MaxWidth="750"/>
+
+                        <DataGridTemplateColumn Header="Volume(24h)"
+                                            Width="*"
+                                            MinWidth="160"
+                                            MaxWidth="750">
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical"
+                                                HorizontalAlignment="Left">
+
+                                        <TextBlock Text="{Binding Volume24H, Converter={StaticResource DecimalToZeroCurrency}}"/>
+
+                                        <TextBlock Text="{Binding Path=., Converter={StaticResource CurrencyVolumeToVolume}}"
+                                                   Margin="8,2,0,0"
+                                                   FontSize="14"/>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Circulating Supply"
+                                            Binding="{Binding Path=., Converter={StaticResource SupplyWithSymbol}}"
+                                            Width="*"
+                                            MinWidth="200"
+                                            MaxWidth="750"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Button VerticalAlignment="Bottom"
+                        Name="LoadMoreButton"
+                        Click="LoadMoreButton_Click"
+                        Command="{Binding LoadMoreCommand}"
+                        Visibility="Collapsed"
+                        Style="{DynamicResource LoadMoreStyle}"
+                        Cursor="ScrollS"
+                        Height="60"
+                        Width="150"
+                        FontSize="20"
+                        Margin="0, 0, 0, 28"
+                        Content="Load More"/>
+            </Grid>
         </Grid>
     </Border>
 </UserControl>

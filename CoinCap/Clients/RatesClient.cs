@@ -1,8 +1,8 @@
 ﻿using CoinCap.ApiEndPosints;
+using CoinCap.Entities;
 using CoinCap.Entities.Rates;
 using CoinCap.Interfaces;
-using CoinGecko.Clients;
-using CoinGecko.Services;
+using CoinCap.Services;
 
 namespace CoinCap.Clients
 {
@@ -10,14 +10,14 @@ namespace CoinCap.Clients
     {
         public RatesClient(HttpClient client) : base(client) { }
 
-        public async Task<RateById> GetRateById(string id)
+        public async Task<ApiResponse<RateById>> GetRateById(string id)
         {
-            return await GetAsync<RateById>(QueryStringService.AppendQueryString(RatesEndPoints.RateById(id))).ConfigureAwait(false);
+            return await GetAsync<ApiResponse<RateById>>(QueryStringService.AppendQueryString(RatesEndPoints.RateById(id))).ConfigureAwait(false);
         }
 
-        public async Task<List<RateById>> GetRates()
+        public async Task<ApiResponseArray<RateById>> GetRates()
         {
-            return await GetAsync<List<RateById>>(QueryStringService.AppendQueryString(RatesEndPoints.AllRates())).ConfigureAwait(false);
+            return await GetAsync<ApiResponseArray<RateById>>(QueryStringService.AppendQueryString(RatesEndPoints.AllRates())).ConfigureAwait(false);
         }
     }
 }

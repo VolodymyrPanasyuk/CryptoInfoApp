@@ -1,4 +1,4 @@
-﻿using CoinGecko.ApiEndPoints;
+﻿using CoinCap.ApiEndPoints;
 
 namespace CoinCap.ApiEndPosints
 {

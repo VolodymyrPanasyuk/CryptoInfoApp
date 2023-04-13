@@ -8,7 +8,14 @@ namespace CryptoInfoApp.Core.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((decimal)value).ToString("C0", CultureInfo.CurrentCulture);
+            if (value != null)
+            {
+                return ((decimal)value).ToString("C0", CultureInfo.CurrentCulture);
+            }
+            else
+            {
+                return "No data";
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

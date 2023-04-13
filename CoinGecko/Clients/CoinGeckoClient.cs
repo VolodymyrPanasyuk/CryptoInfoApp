@@ -14,6 +14,9 @@ public partial class CoinGeckoClient : IDisposable, ICoinGeckoClient
     public CoinGeckoClient()
     {
         _httpClient = new();
+
+        //Little hack, beacause CoinGecko API doesn't allow requests without User-Agent header
+        _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36");
     }
 
     public static CoinGeckoClient Instance => Lazy.Value;

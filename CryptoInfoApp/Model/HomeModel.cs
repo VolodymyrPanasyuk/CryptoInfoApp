@@ -5,6 +5,7 @@ namespace CryptoInfoApp.Model
     public class HomeModel
     {
         public string Id { get; set; }
+        public long? Rank { get; set; }
         public Uri? Image { get; set; }
         public string Name { get; set; }
         public string Symbol { get; set; }

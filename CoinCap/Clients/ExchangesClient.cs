@@ -1,8 +1,8 @@
 ﻿using CoinCap.ApiEndPosints;
+using CoinCap.Entities;
 using CoinCap.Entities.Exchanges;
 using CoinCap.Interfaces;
-using CoinGecko.Clients;
-using CoinGecko.Services;
+using CoinCap.Services;
 
 namespace CoinCap.Clients
 {
@@ -10,14 +10,14 @@ namespace CoinCap.Clients
     {
         public ExchangesClient(HttpClient client) : base(client) { }
 
-        public async Task<ExchangeById> ExchangeById(string id)
+        public async Task<ApiResponse<ExchangeById>> ExchangeById(string id)
         {
-            return await GetAsync<ExchangeById>(QueryStringService.AppendQueryString(ExchangesEndPoints.ExchangeById(id))).ConfigureAwait(false);
+            return await GetAsync<ApiResponse<ExchangeById>>(QueryStringService.AppendQueryString(ExchangesEndPoints.ExchangeById(id))).ConfigureAwait(false);
         }
 
-        public Task<List<ExchangeById>> GetExchanges()
+        public Task<ApiResponseArray<ExchangeById>> GetExchanges()
         {
-            return GetAsync<List<ExchangeById>>(QueryStringService.AppendQueryString(ExchangesEndPoints.AllExchanges()));
+            return GetAsync<ApiResponseArray<ExchangeById>>(QueryStringService.AppendQueryString(ExchangesEndPoints.AllExchanges()));
         }
     }
 }

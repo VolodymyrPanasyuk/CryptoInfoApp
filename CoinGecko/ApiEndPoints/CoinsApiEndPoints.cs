@@ -9,5 +9,6 @@ public static class CoinsApiEndPoints
     public static string HistoryByCoinId(string id) => BaseApiEndPointUrl.AddCoinsIdUrl(id) + "/history";
     public static string MarketChartByCoinId(string id) => BaseApiEndPointUrl.AddCoinsIdUrl(id) + "/market_chart";
     public static string MarketChartRangeByCoinId(string id) => BaseApiEndPointUrl.AddCoinsIdUrl(id) + "/market_chart/range";
+    public static string OhlcByCoinId(string id) => BaseApiEndPointUrl.AddCoinsIdUrl(id) + "/ohlc";
     public static string StatusUpdates(string id) => BaseApiEndPointUrl.AddCoinsIdUrl(id) + "/status_updates";
 }

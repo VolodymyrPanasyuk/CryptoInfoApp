@@ -10,6 +10,8 @@ using System;
 using CoinCap.Clients;
 using CryptoInfoApp.Model;
 using CoinCap.Entities.Assets;
+using System.Globalization;
+using CoinCap.Entities;
 
 namespace CryptoInfoApp.ViewModel
 {
@@ -17,14 +19,13 @@ namespace CryptoInfoApp.ViewModel
     {
         private CoinGeckoClient CoinGeckoApi { get; } = new();
         private CoinCapClient CoinCapApi { get; } = new();
-        public ObservableCollection<HomeModel> HomeModels { get; set; } = new();
 
-        public Visibility LoadingVisibility { get; set; } = Visibility.Visible;
-        public Visibility ErrorVisibility { get; set; } = Visibility.Collapsed;
-        public bool CircleIconSpin { get; set; } = true;
-        public string StatusMessage { get; set; } = "Loading";
-        public string CoinGeckoErrorMessage { get; set; }
-        public string CoinCapErrorMessage { get; set; }
+        private int page = 1;
+        private int offset = 0;
+
+        public ObservableCollection<HomeModel> HomeModels { get; set; } = new();
+        public Loader Loader { get; set; }
+        public RelayCommand LoadMoreCommand { get; set; }
 
         private List<HomeModel> ConvertToHomeModels(List<CoinMarkets> coinGeckoData)
         {
@@ -34,6 +35,7 @@ namespace CryptoInfoApp.ViewModel
                 var homeModel = new HomeModel
                 {
                     Id = coin.Id,
+                    Rank = coin.MarketCapRank,
                     Image = coin.Image,
                     Name = coin.Name,
                     Symbol = coin.Symbol,
@@ -50,27 +52,43 @@ namespace CryptoInfoApp.ViewModel
             return homeModels;
         }
 
-        private List<HomeModel> ConvertToHomeModels(List<AssetById> coinCapData)
+        private List<HomeModel> ConvertToHomeModels(ApiResponseArray<AssetById> coinCapData)
         {
             List<HomeModel> homeModels = new();
-            foreach (var asset in coinCapData)
+            if (coinCapData.Data == null)
+                return homeModels;
+
+            var numberFormat = new NumberFormatInfo { NumberDecimalSeparator = "." };
+            foreach (var asset in coinCapData.Data)
             {
                 var homeModel = new HomeModel
                 {
                     Id = asset.Id,
-                    Image = null,
                     Name = asset.Name,
                     Symbol = asset.Symbol,
-                    Price = asset.PriceUsd,
-                    PriceChangePercentage24H = asset.ChangePercent24Hr,
-                    PriceChangePercentage7D = null,
-                    MarketCap = asset.MarketCapUsd,
-                    Volume24H = asset.VolumeUsd24Hr,
-                    CirculatingSupply = asset.Supply
                 };
+
+                if (long.TryParse(asset.Rank, out long rank))
+                    homeModel.Rank = rank;
+
+                if (decimal.TryParse(asset.PriceUsd, NumberStyles.Any, numberFormat, out decimal priceUsd))
+                    homeModel.Price = priceUsd;
+
+                if (decimal.TryParse(asset.ChangePercent24Hr, NumberStyles.Any, numberFormat, out decimal priceChangePercentage24H))
+                    homeModel.PriceChangePercentage24H = priceChangePercentage24H;
+
+                if (decimal.TryParse(asset.MarketCapUsd, NumberStyles.Any, numberFormat, out decimal marketCapUsd))
+                    homeModel.MarketCap = marketCapUsd;
+
+                if (decimal.TryParse(asset.VolumeUsd24Hr, NumberStyles.Any, numberFormat, out decimal volumeUsd24Hr))
+                    homeModel.Volume24H = volumeUsd24Hr;
+
+                if (decimal.TryParse(asset.Supply, NumberStyles.Any, numberFormat, out decimal circulatingSupply))
+                    homeModel.CirculatingSupply = circulatingSupply;
 
                 homeModels.Add(homeModel);
             }
+
             return homeModels;
         }
 
@@ -79,58 +97,60 @@ namespace CryptoInfoApp.ViewModel
             return CoinGeckoApi.CoinsClient.GetCoinMarkets(vsCurrency: "usd", ids: Array.Empty<string>(), order: "market_cap_desc", perPage: size, page: page, sparkline: true, priceChangePercentage: "24h,7d", category: "");
         }
 
-        private Task<List<AssetById>> GetFromCoinCapApi(int limit)
+        private Task<ApiResponseArray<AssetById>> GetFromCoinCapApi(int limit, int offset)
         {
-            return CoinCapApi.AssetsClient.GetAllAssets(null, null, limit, null);
+            return CoinCapApi.AssetsClient.GetAssets(limit, offset);
         }
 
         private async Task FetchData()
         {
             try
             {
-                var coins = await GetFromCoinGeckoApi(30, 1);
+                var coinGeckoResponse = await GetFromCoinGeckoApi(30, page);
 
-                DispatcherHelper.Invoke(() =>
+                await Application.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    HomeModels.Clear();
-                    ConvertToHomeModels(coins).ForEach(c => HomeModels.Add(c));
-                    LoadingVisibility = Visibility.Collapsed;
+                    ConvertToHomeModels(coinGeckoResponse).ForEach(c => HomeModels.Add(c));
                 });
+
+                Loader.LoadingSuccess();
             }
             catch (HttpRequestException ex)
             {
-                DispatcherHelper.Invoke(() =>
-                {
-                    CoinGeckoErrorMessage = "CoinGecko returns: " + ex.Message;
-                    ErrorVisibility = Visibility.Visible;
-                    StatusMessage = "Trying to get data from other API";
-                });
-
+                Loader.CoinGeckoError(ex.Message);
                 try
                 {
-                    var data = await GetFromCoinCapApi(30);
+                    var coinCapResponse = await GetFromCoinCapApi(30, offset);
 
-                    DispatcherHelper.Invoke(() =>
+                    await Application.Current.Dispatcher.BeginInvoke(() =>
                     {
-                        HomeModels.Clear();
-                        ConvertToHomeModels(data).ForEach(c => HomeModels.Add(c));
-                        LoadingVisibility = Visibility.Collapsed;
+                        ConvertToHomeModels(coinCapResponse).ForEach(c => HomeModels.Add(c));
                     });
+
+                    Loader.LoadingSuccess();
                 }
                 catch (HttpRequestException ex2)
                 {
-                    DispatcherHelper.Invoke(() =>
-                    {
-                        CoinCapErrorMessage = "CoinCap returns: " + ex2.Message;
-                        CircleIconSpin = false;
-                        StatusMessage = "Both APIs return an error. Click on the \"Reload page\" button to try again";
-                    });
+                    Loader.CoinCapError(ex2.Message);
                 }
+            }
+            finally
+            {
+                if (!Loader.IsLoaded)
+                    Loader.LoadingFailed();
             }
         }
 
         public HomeViewModel()
         {
+            Loader = new Loader();
+            LoadMoreCommand = new RelayCommand(x =>
+            {
+                page++;
+                offset += 30;
+                Task.Run(async () => { await FetchData(); });
+            });
+
             Task.Run(async () => await FetchData());
         }
 

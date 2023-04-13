@@ -20,12 +20,12 @@ namespace CoinCap.Entities.Assets
         public string QuoteSymbol { get; set; }
 
         [JsonPropertyName("volumeUsd24Hr")]
-        public decimal? VolumeUsd24Hr { get; set; }
+        public string? VolumeUsd24Hr { get; set; }
 
         [JsonPropertyName("priceUsd")]
-        public decimal? PriceUsd { get; set; }
+        public string? PriceUsd { get; set; }
 
         [JsonPropertyName("volumePercent")]
-        public decimal? VolumePercent { get; set; }
+        public string? VolumePercent { get; set; }
     }
 }

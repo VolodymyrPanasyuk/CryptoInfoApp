@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CryptoInfoApp": {
+      "commandName": "Project",
+      "hotReloadEnabled": false
+    }
+  }
+}

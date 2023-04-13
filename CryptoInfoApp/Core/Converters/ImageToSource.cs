@@ -1,28 +1,23 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using CryptoInfoApp.Properties;
+using System.Windows.Media;
 
 namespace CryptoInfoApp.Core.Converters
 {
-    public class PercentageToBrush : IValueConverter
+    public class ImageToSource : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null)
+            if (targetType == typeof(ImageSource))
             {
-                if (Settings.Default.DarkTheme)
+                if (value != null)
                 {
-                    return (decimal)value >= 0 ? "#00db0f" : "#ff0000";
-                }
-                else
-                {
-                    return (decimal)value >= 0 ? "#006607" : "#b30000";
+                    return value;
                 }
             }
-            return "Transparent";
+            return Binding.DoNothing;
         }
-
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

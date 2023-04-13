@@ -11,12 +11,12 @@ namespace CoinCap.Entities.Rates
         public string Symbol { get; set; }
 
         [JsonPropertyName("currencySymbol")]
-        public string CurrencySymbol { get; set; }
+        public string? CurrencySymbol { get; set; }
 
         [JsonPropertyName("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         [JsonPropertyName("rateUsd")]
-        public decimal? RateUsd { get; set; }
+        public string? RateUsd { get; set; }
     }
 }

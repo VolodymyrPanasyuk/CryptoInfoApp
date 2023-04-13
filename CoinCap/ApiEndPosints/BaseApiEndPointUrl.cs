@@ -1,4 +1,4 @@
-namespace CoinGecko.ApiEndPoints;
+namespace CoinCap.ApiEndPoints;
 
 using System;
 

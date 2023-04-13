@@ -5,19 +5,19 @@ namespace CoinCap.Entities.Candles
     public class Candle
     {
         [JsonPropertyName("open")]
-        public decimal? Open { get; set; }
+        public string? Open { get; set; }
 
         [JsonPropertyName("high")]
-        public decimal? High { get; set; }
+        public string? High { get; set; }
 
         [JsonPropertyName("low")]
-        public decimal? Low { get; set; }
+        public string? Low { get; set; }
 
         [JsonPropertyName("close")]
-        public decimal? Close { get; set; }
+        public string? Close { get; set; }
 
         [JsonPropertyName("volume")]
-        public decimal? Volume { get; set; }
+        public string? Volume { get; set; }
 
         [JsonPropertyName("period")]
         public long? Period { get; set; }

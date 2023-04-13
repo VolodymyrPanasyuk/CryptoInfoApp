@@ -11,22 +11,22 @@ namespace CoinCap.Entities.Exchanges
         public string Name { get; set; }
 
         [JsonPropertyName("rank")]
-        public int? Rank { get; set; }
+        public string? Rank { get; set; }
 
         [JsonPropertyName("percentTotalVolume")]
-        public decimal? PercentTotalVolume { get; set; }
+        public string? PercentTotalVolume { get; set; }
 
         [JsonPropertyName("volumeUsd")]
-        public decimal? VolumeUsd { get; set; }
+        public string? VolumeUsd { get; set; }
 
         [JsonPropertyName("tradingPairs")]
-        public int? TradingPairs { get; set; }
+        public string? TradingPairs { get; set; }
 
         [JsonPropertyName("socket")]
         public bool? Socket { get; set; }
 
         [JsonPropertyName("exchangeUrl")]
-        public Uri? ExchangeUrl { get; set; }
+        public string? ExchangeUrl { get; set; }
 
         [JsonPropertyName("updated")]
         public long? Updated { get; set; }

@@ -8,7 +8,7 @@ namespace CoinCap.Entities.Assets
         public string Id { get; set; }
 
         [JsonPropertyName("rank")]
-        public int? Rank { get; set; }
+        public string? Rank { get; set; }
 
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; }
@@ -17,24 +17,24 @@ namespace CoinCap.Entities.Assets
         public string Name { get; set; }
 
         [JsonPropertyName("supply")]
-        public decimal? Supply { get; set; }
+        public string? Supply { get; set; }
 
         [JsonPropertyName("maxSupply")]
-        public decimal? MaxSupply { get; set; }
+        public string? MaxSupply { get; set; }
 
         [JsonPropertyName("marketCapUsd")]
-        public decimal? MarketCapUsd { get; set; }
+        public string? MarketCapUsd { get; set; }
 
         [JsonPropertyName("volumeUsd24Hr")]
-        public decimal? VolumeUsd24Hr { get; set; }
+        public string? VolumeUsd24Hr { get; set; }
 
         [JsonPropertyName("priceUsd")]
-        public decimal? PriceUsd { get; set; }
+        public string? PriceUsd { get; set; }
 
         [JsonPropertyName("changePercent24Hr")]
-        public decimal? ChangePercent24Hr { get; set; }
+        public string? ChangePercent24Hr { get; set; }
 
         [JsonPropertyName("vwap24Hr")]
-        public decimal? Vwap24Hr { get; set; }
+        public string? Vwap24Hr { get; set; }
     }
 }

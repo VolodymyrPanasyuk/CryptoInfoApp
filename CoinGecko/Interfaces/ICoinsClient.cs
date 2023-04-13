@@ -42,4 +42,6 @@ public interface ICoinsClient
     Task<MarketChartById> GetMarketChartsByCoinId(string id, string vsCurrency, string days, string interval);
 
     Task<MarketChartById> GetMarketChartRangeByCoinId(string id, string vsCurrency, string from, string to);
+
+    Task<dynamic> GetOhlcByCoinId(string id, string vsCurrency, string days);
 }

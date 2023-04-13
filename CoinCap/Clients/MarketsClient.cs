@@ -1,8 +1,8 @@
 ﻿using CoinCap.ApiEndPosints;
+using CoinCap.Entities;
 using CoinCap.Entities.Markets;
 using CoinCap.Interfaces;
-using CoinGecko.Clients;
-using CoinGecko.Services;
+using CoinCap.Services;
 
 namespace CoinCap.Clients
 {
@@ -10,9 +10,9 @@ namespace CoinCap.Clients
     {
         public MarketsClient(HttpClient client) : base(client) { }
 
-        public async Task<List<Market>> GetMarkets(string? exchangeId, string? baseSymbol, string? quoteSymbol, string? baseId, string? quoteId, string? assetSymbol, string? assetId, int? limit, int? offset)
+        public async Task<ApiResponseArray<Market>> GetMarkets(string? exchangeId, string? baseSymbol, string? quoteSymbol, string? baseId, string? quoteId, string? assetSymbol, string? assetId, int? limit, int? offset)
         {
-            return await GetAsync<List<Market>>(QueryStringService.AppendQueryString(MarketsEndPoints.AllMarkets(),
+            return await GetAsync<ApiResponseArray<Market>>(QueryStringService.AppendQueryString(MarketsEndPoints.AllMarkets(),
                 new Dictionary<string, object>
                 {
                     {"exchangeId", exchangeId},

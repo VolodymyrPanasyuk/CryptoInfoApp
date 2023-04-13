@@ -23,7 +23,7 @@ public class CoinFullDataById : CoinFullDataWithOutMarketData
     public string CountryOrigin { get; set; }
 
     [JsonPropertyName("genesis_date")]
-    public DateTime GenesisDate { get; set; }
+    public DateTime? GenesisDate { get; set; }
 
     [JsonPropertyName("market_cap_rank")]
     public long? MarketCapRank { get; set; }

@@ -1,5 +1,5 @@
 ﻿using CoinCap.Interfaces;
-using CoinGecko.ApiEndPoints;
+using CoinCap.ApiEndPoints;
 
 namespace CoinCap.Clients
 {
@@ -13,7 +13,7 @@ namespace CoinCap.Clients
         public CoinCapClient()
         {
             _httpClient = new();
-            //_httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {BaseApiEndPointUrl.ApiKey}");
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {BaseApiEndPointUrl.ApiKey}");
         }
 
         public IAssetsClient AssetsClient => new AssetsClient(_httpClient);

@@ -1,4 +1,4 @@
-namespace CoinGecko.Interfaces;
+namespace CoinCap.Interfaces;
 
 using System;
 using System.Threading.Tasks;

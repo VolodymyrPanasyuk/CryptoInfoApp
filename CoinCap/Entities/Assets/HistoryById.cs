@@ -5,7 +5,7 @@ namespace CoinCap.Entities.Assets
     public class HistoryById
     {
         [JsonPropertyName("priceUsd")]
-        public decimal? PriceUsd { get; set; }
+        public string? PriceUsd { get; set; }
 
         [JsonPropertyName("time")]
         public long? Time { get; set; }

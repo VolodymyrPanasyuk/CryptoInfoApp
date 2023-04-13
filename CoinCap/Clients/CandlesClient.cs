@@ -1,9 +1,9 @@
 ﻿using CoinCap.ApiEndPosints;
+using CoinCap.Entities;
 using CoinCap.Entities.Candles;
 using CoinCap.Interfaces;
 using CoinCap.Parameters;
-using CoinGecko.Clients;
-using CoinGecko.Services;
+using CoinCap.Services;
 
 namespace CoinCap.Clients
 {
@@ -11,9 +11,9 @@ namespace CoinCap.Clients
     {
         public CandlesClient(HttpClient client) : base(client) { }
 
-        public async Task<List<Candle>> GetCandles(string exchange, string interval, string baseId, string quoteId, long? start, long? end)
+        public async Task<ApiResponseArray<Candle>> GetCandles(string exchange, string interval, string baseId, string quoteId, long? start, long? end)
         {
-            return await GetAsync<List<Candle>>(QueryStringService.AppendQueryString(CandlesEndPoints.AllCandles(),
+            return await GetAsync<ApiResponseArray<Candle>>(QueryStringService.AppendQueryString(CandlesEndPoints.AllCandles(),
                 new Dictionary<string, object>
                 {
                     {"exchange", exchange},
@@ -25,7 +25,7 @@ namespace CoinCap.Clients
                 })).ConfigureAwait(false);
         }
 
-        public async Task<List<Candle>> GetCandles(string baseId, string quoteId, string? interval)
+        public async Task<ApiResponseArray<Candle>> GetCandles(string baseId, string quoteId, string? interval)
         {
             return await GetCandles("poloniex", interval != null ? interval : CandlesInterval.OneDay, baseId, quoteId, null, null).ConfigureAwait(false);
         }

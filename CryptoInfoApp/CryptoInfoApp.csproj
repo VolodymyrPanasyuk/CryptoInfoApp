@@ -7,12 +7,15 @@
 		<UseWPF>true</UseWPF>
 		<AssemblyName>Crypto Info App</AssemblyName>
 		<ApplicationIcon>Images\crypto-icon.ico</ApplicationIcon>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
 	  <None Remove="Fonts\VarelaRound-Regular.ttf" />
 	  <None Remove="Images\crypto-image.png" />
 	  <None Remove="Images\switch-theme.png" />
+	  <None Remove="Images\usd.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -25,11 +28,14 @@
 	  <Content Include="Images\switch-theme.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
+	  <Content Include="Images\usd.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="FontAwesome5" Version="2.1.11" />
-	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+	  <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.701" />
 	</ItemGroup>
 
 	<ItemGroup>

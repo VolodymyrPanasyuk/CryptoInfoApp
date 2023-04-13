@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using CryptoInfoApp.ViewModel;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace CryptoInfoApp.View
 {
@@ -7,6 +9,7 @@ namespace CryptoInfoApp.View
         public CoinView()
         {
             InitializeComponent();
+            DataContext = (Application.Current.MainWindow.DataContext as MainViewModel).CurrentView;
         }
     }
 }
