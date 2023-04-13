@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net6.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
@@ -12,39 +13,39 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Fonts\VarelaRound-Regular.ttf" />
-	  <None Remove="Images\crypto-image.png" />
-	  <None Remove="Images\switch-theme.png" />
-	  <None Remove="Images\usd.png" />
+		<None Remove="Fonts\VarelaRound-Regular.ttf" />
+		<None Remove="Images\crypto-image.png" />
+		<None Remove="Images\switch-theme.png" />
+		<None Remove="Images\usd.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Images\crypto-icon.ico">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="Images\crypto-image.png">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="Images\switch-theme.png">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="Images\usd.png">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
+		<Content Include="Images\crypto-icon.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\crypto-image.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\switch-theme.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\usd.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="FontAwesome5" Version="2.1.11" />
-	  <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.701" />
+		<PackageReference Include="FontAwesome5" Version="2.1.11" />
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.701" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\CoinCap\CoinCap.csproj" />
-	  <ProjectReference Include="..\CoinGecko\CoinGecko.csproj" />
+		<ProjectReference Include="..\CoinCap\CoinCap.csproj" />
+		<ProjectReference Include="..\CoinGecko\CoinGecko.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Resource Include="Fonts\VarelaRound-Regular.ttf" />
+		<Resource Include="Fonts\VarelaRound-Regular.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
